@@ -18,6 +18,7 @@ html, body {
 
 main {
     min-height: 84.7vh;
+    padding: 3rem 0 2rem 0;
 }
 
 footer {
@@ -29,10 +30,17 @@ footer {
     bottom: 0;
 }
 
-.login-signup-center {
+.content {
+    width: 75%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
+}
+
+.wrapper {
+    padding: 1rem 2rem;
+    background-color: #fff;
 }
 
 #navbarResponsive {
@@ -57,4 +65,10 @@ footer {
     --bs-btn-hover-color: var(--light-color);
     --bs-btn-hover-bg: #fff;
     --bs-btn-hover-border-color: var(--light-color);
+}
+.btn-bd-secondary {
+    --bs-btn-color: var(--light-color);
+    --bs-btn-bg: #fff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--light-color);
 }
