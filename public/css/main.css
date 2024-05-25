@@ -17,16 +17,20 @@ html, body {
 }
 
 main {
-    min-height: 84.7vh;
+    min-height: calc(100vh - 64px - 54px);
 }
 
 footer {
     color: #fff;
     background-color: var(--dark-color);
-    padding: 1rem 5rem;
+    padding: 0 5rem;
     width: 100%;
+    height: 54px;
     position: relative;
     bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .content {
@@ -61,7 +65,9 @@ footer {
     --bs-navbar-hover-color: var(--light-color);
     --bs-navbar-color: #a9a9a9;
     --bs-navbar-active-color: var(--dark-color);
-    padding: 0.5rem 5rem;
+    padding: 0 5rem;
+    align-items: center;
+    height: 64px;
 }
 .navbar-nav li {
     padding: 0 0.3rem;
