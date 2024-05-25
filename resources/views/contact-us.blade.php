@@ -18,7 +18,6 @@
         <div class="row g-3 mb-3">
             <div class="col-6">
                 <h4 class="mb-3">Rate Us</h4>
-                <div data-coreui-toggle="rating" data-coreui-value="3"></div>
             </div>
         </div>
     </div>
