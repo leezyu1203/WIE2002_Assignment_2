@@ -57,4 +57,28 @@ class AuthController extends Controller
             }
         }
     }
+
+    function profile(Request $request) {
+        $data = ['UserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        return view('my-profile', $data);
+    }
+
+    function edit(Request $request) {
+        $request -> validate([
+            'name' => 'required',
+            'phone' => 'required',
+        ]);
+
+        $user = User::findOrFail(session('LoggedUser'));
+        $user -> name = $request -> name;
+        $user -> phone = $request -> phone;
+
+        $updated = $user -> save();
+
+        if($updated) {
+            return back()->with('success', 'Your information updated successfully.');
+        } else {
+            return back()->with('fail', 'Something went wrong, try again later.');
+        }
+    }
 }

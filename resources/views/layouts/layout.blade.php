@@ -36,9 +36,16 @@
                         <a href="{{ route('contact-us') }}"
                             class="nav-link {{ request()->routeIs('contact-us') ? 'active' : '' }} ">Contact Us</a>
                     </li>
+                    @if (session('LoggedUser'))
+                    <li class="nav-item {{ request()->routeIs('myprofile') ? 'active' : '' }} ">
+                        <a href="{{ route('myprofile') }}"
+                            class="nav-link {{ request()->routeIs('myprofile') ? 'active' : '' }} ">My Profile</a>
+                    </li>
+                    @else
                     <li class="nav-item {{ request()->routeIs('login') ? 'active' : '' }} ">
                         <a href="{{ route('login')}}" class="btn btn-bd-primary">Login</a>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>
