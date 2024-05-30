@@ -81,4 +81,11 @@ class AuthController extends Controller
             return back()->with('fail', 'Something went wrong, try again later.');
         }
     }
+
+    function logout(Request $request) {
+        if(session()->has('LoggedUser')) {
+            session()->pull('LoggedUser');
+            return redirect(route('login'));
+        }
+    }
 }

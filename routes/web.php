@@ -29,6 +29,7 @@ Route::get('/contact-us', function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/my-profile', [AuthController::class, 'profile'])->name('myprofile');
 Route::get('/sign-up', [AuthController::class, 'sign_up'])->name('sign-up');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/auth/save', [AuthController::class, 'save'])->name('auth.save');
 Route::post('/auth/check', [AuthController::class, 'check'])->name('auth.check');
 Route::patch('/auth/edit', [AuthController::class, 'edit'])->name('auth.edit');

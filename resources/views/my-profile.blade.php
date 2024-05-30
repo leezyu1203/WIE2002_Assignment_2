@@ -12,7 +12,7 @@
                     <h4>{{ $UserInfo['name'] }}</h4>
                     <p>{{ $UserInfo['email'] }}<br>
                         {{ $UserInfo['phone'] }}</p>
-                    <button type="button" class="btn btn-bd-primary" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-bd-primary w-100" data-bs-toggle="modal"
                         data-bs-target="#editProfileModal">
                         Edit
                     </button>
@@ -53,6 +53,9 @@
                         </div>
                     </div>
                 </div>
+                <form action="{{ route('logout') }}" method="get" class="mb-3">
+                    <button type="submit" class="btn btn-bd-secondary w-100">Logout</button>
+                </form>
                 @if(Session::get('fail'))
                     <div class="alert alert-danger">
                         {{Session::get('fail')}}
