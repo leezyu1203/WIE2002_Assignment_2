@@ -3,6 +3,7 @@
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/auth/save', [AuthController::class, 'save'])->name('auth.save');
 Route::post('/auth/check', [AuthController::class, 'check'])->name('auth.check');
 Route::patch('/auth/edit', [AuthController::class, 'edit'])->name('auth.edit');
+
+Route::get('/rating', function () {
+    return view('rating');
+});
+
+Route::post('/rate', [RatingController::class, 'store']);

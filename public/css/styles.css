@@ -1,0 +1,21 @@
+/* public/css/styles.css */
+.rating {
+    direction: rtl;
+    display: inline-block;
+}
+
+.star {
+    font-size: 2em;
+    color: gray;
+    cursor: pointer;
+}
+
+.star:hover,
+.star:hover ~ .star,
+.star.selected {
+    color: gold;
+}
+
+#send-rating {
+    margin: 0 0 8px 6px;
+}
