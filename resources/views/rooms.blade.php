@@ -22,18 +22,20 @@
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
             <div class="col-4">
                 <div class="wrapper">
                     <form action="{{route('rooms')}}" method="get">
                         <div class="mb-4">
                             <label for="checkin-date">Check-in Date</label>
-                            <input type="date" class="form-control" id="checkin-date" name="checkin-date">
+                            <input type="date" class="form-control" id="checkin-date" name="checkin-date"
+                                min="{{ date('Y-m-d') }}" value="{{ $checkinDate }}">
                         </div>
                         <div class="mb-4">
                             <label for="checkout-date">Check-out Date</label>
-                            <input type="date" class="form-control" id="checkout-date" name="checkout-date">
+                            <input type="date" class="form-control" id="checkout-date" name="checkout-date"
+                                value="{{ $checkoutDate }}">
                         </div>
                         <button type="submit" class="btn btn-bd-primary w-100">Check Availability</button>
                     </form>
@@ -42,4 +44,6 @@
         </div>
     </div>
 </main>
+
+<script src="/js/handleDateInput.js"></script>
 @endsection

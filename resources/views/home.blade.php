@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <input type="date" class="form-control" id="checkin-date" name="checkin-date" required>
+                    <input type="date" class="form-control" id="checkin-date" name="checkin-date" min="{{ date('Y-m-d') }}" required>
                 </div>
                 <div class="col">
                     <input type="date" class="form-control" id="checkout-date" name="checkout-date" required>
@@ -30,4 +30,6 @@
         </form>
     </div>
 </main>
+
+<script src="/js/handleDateInput.js"></script>
 @endsection

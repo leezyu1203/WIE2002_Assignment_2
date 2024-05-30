@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -18,9 +19,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/rooms', function () {
-    return view('rooms');
-})->name('rooms');
+Route::get('/rooms', [MainController::class, 'check_rooms'])->name('rooms');
 
 Route::get('/contact-us', function () {
     return view('contact-us');
