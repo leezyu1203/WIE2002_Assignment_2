@@ -25,6 +25,10 @@ Route::get('/contact-us', function () {
     return view('contact-us');
 })->name('contact-us');
 
+Route::get('/rooms/booking', function () {
+    return view('booking');
+})->name('rooms.booking');
+
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/my-profile', [AuthController::class, 'profile'])->name('myprofile');
 Route::get('/sign-up', [AuthController::class, 'sign_up'])->name('sign-up');

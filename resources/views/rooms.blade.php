@@ -18,7 +18,14 @@
                                 <h5 class="card-title">Room style</h5>
                                 <p class="card-text">Description for the room</p>
                                 <p class="card-text">RMXX per night</p>
-                                <a href="..." class="btn btn-bd-primary">Book Now</a>
+                                @if ($checkinDate || $checkoutDate)
+                                    <a href="{{route('rooms.booking')}}" class="btn btn-bd-primary">Book Now</a>
+                                @else
+                                    <button type="button" class="btn btn-bd-primary" data-bs-container="body"
+                                        data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Please check the room availability before booking.">
+                                        Book Now
+                                    </button>
+                                @endif
                             </div>
                         </div>
                     </div>

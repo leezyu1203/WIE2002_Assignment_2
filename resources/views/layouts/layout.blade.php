@@ -37,14 +37,14 @@
                             class="nav-link {{ request()->routeIs('contact-us') ? 'active' : '' }} ">Contact Us</a>
                     </li>
                     @if (session('LoggedUser'))
-                    <li class="nav-item {{ request()->routeIs('myprofile') ? 'active' : '' }} ">
-                        <a href="{{ route('myprofile') }}"
-                            class="nav-link {{ request()->routeIs('myprofile') ? 'active' : '' }} ">My Profile</a>
-                    </li>
+                        <li class="nav-item {{ request()->routeIs('myprofile') ? 'active' : '' }} ">
+                            <a href="{{ route('myprofile') }}"
+                                class="nav-link {{ request()->routeIs('myprofile') ? 'active' : '' }} ">My Profile</a>
+                        </li>
                     @else
-                    <li class="nav-item {{ request()->routeIs('login') ? 'active' : '' }} ">
-                        <a href="{{ route('login')}}" class="btn btn-bd-primary">Login</a>
-                    </li>
+                        <li class="nav-item {{ request()->routeIs('login') ? 'active' : '' }} ">
+                            <a href="{{ route('login')}}" class="btn btn-bd-primary">Login</a>
+                        </li>
                     @endif
                 </ul>
             </div>
@@ -76,9 +76,15 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.5"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
 </body>
 
 </html>
