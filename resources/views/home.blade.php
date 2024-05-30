@@ -4,7 +4,9 @@
 
 @section('content')
 <main>
-    <div class="temp-image">place for image</div>
+    <div class="banner-image">
+        <img src="{{ asset('images/banner.jpg') }}" alt="Banner Image">
+    </div>
     <div class="container-fluid content">
         <form action="{{route('rooms')}}" method="get">
             <div class="row">
