@@ -135,7 +135,7 @@
                                 </div>
                             <div class="col-md-7">
                                 <div class="card-body">
-                                    <h5 class="card-title">Superior Room1</h5>
+                                    <h5 class="card-title">Superior Room</h5>
                                     <p class="card-text">Indulge in the added space and refined comfort of our Superior Room, perfect for guests seeking a more luxurious and relaxing stay. With premium amenities and elegant decor, our Superior Rooms provide an elevated experience. Experience the perfect balance of luxury and comfort in our Superior Room, designed to exceed your expectations.</p>
                                     <p class="card-text">RM400 per night</p>
                                     @if ($checkinDate || $checkoutDate)
