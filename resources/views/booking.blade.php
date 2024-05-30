@@ -17,20 +17,20 @@
                     <h4>Your Reservation</h4>
                     <form action="" method="post">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floating-name" value="name from db">
+                            <input type="text" class="form-control" id="floating-name" value="{{ $UserInfo['name'] }}">
                             <label for="floating-name">Guest Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floating-email" value="email from db">
+                            <input type="email" class="form-control" id="floating-email" value="{{ $UserInfo['email'] }}">
                             <label for="floating-email">Email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" id="floating-phone" value="phone from db">
-                            <label for="floating-phone">Email</label>
+                            <input type="tel" class="form-control" id="floating-phone" value="{{ $UserInfo['phone'] }}">
+                            <label for="floating-phone">Phone Number</label>
                         </div>
-                        <p>Check-in date: dd/mm/yyyy</p>
-                        <p>Check-out date: dd/mm/yyyy</p>
-                        <p>Number of nights: X</p>
+                        <p>Check-in date: {{ $checkinDate }}</p>
+                        <p>Check-out date: {{ $checkoutDate }}</p>
+                        <p>Number of nights: {{ $numOfNights }}</p>
                         <p>Total: RMXXX</p>
                         <button type="submit" class="btn btn-bd-primary">Confirm Booking</button>
                     </form>
