@@ -22,9 +22,8 @@ Route::get('/', function () {
 
 Route::get('/rooms', [MainController::class, 'check_rooms'])->name('rooms');
 
-Route::get('/contact-us', function () {
-    return view('contact-us');
-})->name('contact-us');
+Route::get('/contact-us', [RatingController::class, 'contact_us'])->name('contact-us');
+Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
 
 Route::get('/rooms/booking', [MainController::class, 'rooms_booking'])->name('rooms.booking');
 
@@ -35,9 +34,3 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/auth/save', [AuthController::class, 'save'])->name('auth.save');
 Route::post('/auth/check', [AuthController::class, 'check'])->name('auth.check');
 Route::patch('/auth/edit', [AuthController::class, 'edit'])->name('auth.edit');
-
-Route::get('/rating', function () {
-    return view('rating');
-});
-
-Route::post('/rate', [RatingController::class, 'store']);

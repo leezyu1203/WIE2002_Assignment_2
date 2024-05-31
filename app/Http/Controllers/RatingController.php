@@ -3,19 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rating;
 
 class RatingController extends Controller
 {
+    public function contact_us() {
+        return view('contact-us');
+    }
+
     public function store(Request $request)
     {
-        $rating = intval($request->input('rating'));
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string',
+        ]);
 
-        if ($rating >= 1 && $rating <= 5) {
-            // Here, you would typically store the rating in a database
-            // For demonstration, we're just returning a success message
+        $rates = new Rating;
+        $rates -> rating = $request -> rating;
+        $rates -> comment = $request -> comment;
+        $save = $rates -> save();
+
+        if ($save) {
             return response()->json(['message' => 'Rating submitted successfully!']);
         } else {
             return response()->json(['message' => 'Invalid rating value.'], 400);
         }
+
     }
 }

@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const stars = document.querySelectorAll('.star');
     const sendButton = document.getElementById('send-rating');
+    const commentField = document.getElementById('comment');
     let selectedRating = 0;
 
     stars.forEach(star => {
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function handleSend() {
         if (selectedRating) {
             alert('Thank you for rating our hotel!!');
-            sendRating(selectedRating);
+            sendRating(selectedRating, commentField.value);
         } else {
             alert('Please select a rating before submitting.');
         }
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    function sendRating(value) {
+    function sendRating(value, comment) {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', '/rate', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -66,6 +67,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 console.log('Rating submitted successfully!');
             }
         };
-        xhr.send('rating=' + value);
+        xhr.send(`rating=${value}&comment=${encodeURIComponent(comment)}`);
     }
 });
