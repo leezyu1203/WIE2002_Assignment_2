@@ -54,6 +54,14 @@ footer {
     box-sizing: border-box;
 }
 
+.rated {
+    color: gold;
+}
+
+.not-rated {
+    color: #989898;
+}
+
 #navbarResponsive {
     justify-content: end;
 }

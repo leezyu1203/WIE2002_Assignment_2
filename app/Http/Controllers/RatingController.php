@@ -8,7 +8,8 @@ use App\Models\Rating;
 class RatingController extends Controller
 {
     public function contact_us() {
-        return view('contact-us');
+        $last_5_rates = Rating::latest()->take(5)->get();
+        return view('contact-us', compact('last_5_rates'));
     }
 
     public function store(Request $request)
