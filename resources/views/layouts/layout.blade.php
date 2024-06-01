@@ -19,7 +19,9 @@
 <body>
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Hotel Logo</a>
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="images/AzureWaveInn-nav.png" alt="azure-wave-inn" height="38px">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
