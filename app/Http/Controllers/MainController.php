@@ -21,6 +21,7 @@ class MainController extends Controller
         if(!session()->has('LoggedUser')) {
             return redirect(route('login'));
         }
+        $rooms = Room::all();
         $checkinDate = $request -> query('checkin-date');
         $checkoutDate = $request -> query('checkout-date');
 
@@ -30,6 +31,6 @@ class MainController extends Controller
         $numOfNights = $interval->days;
 
         $data = ['UserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        return view('booking', $data, compact('checkinDate', 'checkoutDate', 'numOfNights'));
+        return view('booking', $data, compact('rooms', 'checkinDate', 'checkoutDate', 'numOfNights'));
     }
 }
