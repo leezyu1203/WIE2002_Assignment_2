@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Date;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Room;
 
 class MainController extends Controller
 {
     function check_rooms(Request $request) {
+        $rooms = Room::all();
         $checkinDate = $request -> query('checkin-date');
         $checkoutDate = $request -> query('checkout-date');
 
-        return view('rooms', compact('checkinDate', 'checkoutDate'));
+        return view('rooms', compact('rooms', 'checkinDate', 'checkoutDate'));
     }
 
     function rooms_booking(Request $request) {

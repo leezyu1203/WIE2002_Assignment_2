@@ -4,6 +4,7 @@ use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/rooms', [MainController::class, 'check_rooms'])->name('rooms');
+// Route::get('/rooms', [MainController::class, 'index'])->name('rooms.index');
 
 Route::get('/contact-us', [RatingController::class, 'contact_us'])->name('contact-us');
 Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
