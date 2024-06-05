@@ -25,7 +25,7 @@ Route::get('/rooms', [MainController::class, 'check_rooms'])->name('rooms');
 Route::get('/contact-us', [RatingController::class, 'contact_us'])->name('contact-us');
 Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
 
-Route::get('/rooms/booking', [MainController::class, 'rooms_booking'])->name('rooms.booking');
+Route::get('/rooms/booking/{roomId}', [MainController::class, 'rooms_booking'])->name('rooms.booking');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/my-profile', [AuthController::class, 'profile'])->name('myprofile');

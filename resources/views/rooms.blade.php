@@ -42,7 +42,7 @@
                                     <p class="card-text">{{ $room->description }}</p>
                                     <p class="card-text">RM{{ $room->price }} per night</p>
                                     @if ($checkinDate || $checkoutDate)
-                                        <a href="{{route('rooms.booking', ['checkin-date' => $checkinDate, 'checkout-date' => $checkoutDate])}}" class="btn btn-bd-primary">Book Now</a>
+                                        <a href="{{route('rooms.booking', ['roomId' => $room->id, 'checkin-date' => $checkinDate, 'checkout-date' => $checkoutDate])}}" class="btn btn-bd-primary">Book Now</a>
                                     @else
                                         <button type="button" class="btn btn-bd-primary" data-bs-container="body"
                                             data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Please check the room availability before booking.">

@@ -17,11 +17,16 @@ class MainController extends Controller
         return view('rooms', compact('rooms', 'checkinDate', 'checkoutDate'));
     }
 
-    function rooms_booking(Request $request) {
+    function rooms_booking(Request $request, $roomId) {
         if(!session()->has('LoggedUser')) {
             return redirect(route('login'));
         }
-        $rooms = Room::all();
+        $rooms = Room::find($roomId);
+
+        if (!$rooms) {
+            abort(404, 'Room not found');
+        }
+        
         $checkinDate = $request -> query('checkin-date');
         $checkoutDate = $request -> query('checkout-date');
 

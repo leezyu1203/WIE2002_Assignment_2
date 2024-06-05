@@ -1,10 +1,11 @@
 @extends("layouts.layout")
 
-@section('title', 'Room Booking')
+@section('title', 'Room Booking', 'Booking - ' . $rooms->name)
 
 @section('content')
 <main>
     <div class="container-fluid content">
+        <h2>Booking - {{ $rooms->name }}</h2>
         <div class="temp-image">room image</div>
         <div class="row g-3">
             <div class="col-md-7">
