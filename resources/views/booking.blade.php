@@ -56,7 +56,8 @@
                         <p>Check-in date: {{ $checkinDate }}</p>
                         <p>Check-out date: {{ $checkoutDate }}</p>
                         <p>Number of nights: {{ $numOfNights }}</p>
-                        <p>Total: RMXXX</p>
+                        <p>RM{{ $rooms->price }} per night</p>
+                        <p>Total: RM{{ number_format($rooms->price * $numOfNights, 2) }}</p>
                         <button type="submit" class="btn btn-bd-primary">Confirm Booking</button>
                     </form>
                 </div>
