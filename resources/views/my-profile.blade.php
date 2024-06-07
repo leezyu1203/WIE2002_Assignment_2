@@ -9,9 +9,9 @@
         <div class="row g-3">
             <div class="col-md-4">
                 <div class="wrapper mb-3">
-                    <h4>{{ $UserInfo['name'] }}</h4>
-                    <p>{{ $UserInfo['email'] }}<br>
-                        {{ $UserInfo['phone'] }}</p>
+                    <h4>{{ $UserInfo->name }}</h4>
+                    <p>{{ $UserInfo->email }}<br>
+                        {{ $UserInfo->phone }}</p>
                     <button type="button" class="btn btn-bd-primary w-100" data-bs-toggle="modal"
                         data-bs-target="#editProfileModal">
                         Edit
@@ -32,17 +32,17 @@
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Name</label>
                                             <input type="text" class="form-control w-100" id="name" name="name"
-                                                value="{{ $UserInfo['name'] }}" required>
+                                                value="{{ $UserInfo->name }}" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="email" class="form-control w-100" id="email" name="email"
-                                                value="{{ $UserInfo['email'] }}" disabled>
+                                                value="{{ $UserInfo->email }}" disabled>
                                         </div>
                                         <div class="mb-3">
                                             <label for="phone" class="form-label">Phone Number</label>
                                             <input type="tel" class="form-control w-100" id="phone" name="phone"
-                                                value="{{ $UserInfo['phone'] }}" required>
+                                                value="{{ $UserInfo->phone }}" required>
                                         </div>
                                         <button type="button" class="btn btn-bd-secondary"
                                             data-bs-dismiss="modal">Cancel</button>
@@ -58,7 +58,7 @@
                 </form>
                 @if(Session::get('fail'))
                     <div class="alert alert-danger">
-                        {{Session::get('fail')}}
+                        {{ Session::get('fail') }}
                     </div>
                 @endif
                 @if(Session::get('success'))
@@ -70,9 +70,39 @@
             <div class="col-md-8">
                 <div class="wrapper">
                     <h4>Booking History</h4>
+                    <div class="booking-history">
+                        @if ($bookings->isEmpty())
+                            <p>No bookings found.</p>
+                        @else
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Room</th>
+                                        <th>Check-in Date</th>
+                                        <th>Check-out Date</th>
+                                        <th>Number of Nights</th>
+                                        <th>Total Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($bookings as $booking)
+                                        <tr>
+                                            <td>{{ $booking->room->name }}</td>
+                                            <td>{{ $booking->checkin_date }}</td>
+                                            <td>{{ $booking->checkout_date }}</td>
+                                            <td>{{ $booking->num_of_nights }}</td>
+                                            <td>RM{{ number_format($booking->total_cost, 2) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<script src="/js/handleDateInput.js"></script>
 @endsection

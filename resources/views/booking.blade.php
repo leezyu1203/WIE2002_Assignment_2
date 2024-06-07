@@ -40,17 +40,24 @@
             <div class="col-md-5">
                 <div class="wrapper">
                     <h4>Your Reservation</h4>
-                    <form action="" method="post">
+                    <form action="{{ route('myprofile.handle_booking', ['roomId' => $rooms->id]) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="checkinDate" value="{{ $checkinDate }}">
+                        <input type="hidden" name="checkoutDate" value="{{ $checkoutDate }}">
+                        <input type="hidden" name="numOfNights" value="{{ $numOfNights }}">
+                        <input type="hidden" name="roomId" value="{{ $rooms->id }}">
+                        <input type="hidden" name="totalCost" value="{{ $rooms->price * $numOfNights }}">
+
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floating-name" value="{{ $UserInfo['name'] }}">
+                            <input type="text" class="form-control" id="floating-name" name="name" value="{{ $UserInfo['name'] }}" required>
                             <label for="floating-name">Guest Name</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floating-email" value="{{ $UserInfo['email'] }}">
+                            <input type="email" class="form-control" id="floating-email" name="email" value="{{ $UserInfo['email'] }}" required>
                             <label for="floating-email">Email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" id="floating-phone" value="{{ $UserInfo['phone'] }}">
+                            <input type="tel" class="form-control" id="floating-phone" name="phone" value="{{ $UserInfo['phone'] }}" required>
                             <label for="floating-phone">Phone Number</label>
                         </div>
                         <p>Check-in date: {{ $checkinDate }}</p>
@@ -65,4 +72,6 @@
         </div>
     </div>
 </main>
+
+<script src="/js/handleDateInput.js"></script>
 @endsection

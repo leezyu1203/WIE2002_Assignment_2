@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -58,11 +59,28 @@ class AuthController extends Controller
         }
     }
 
-    function profile(Request $request) {
-        $data = ['UserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+    // function profile(Request $request) {
+    //     $data = ['UserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+    //     return view('my-profile', $data);
+    // }
+
+    public function profile(Request $request)
+    {
+        $userId = session('LoggedUser');
+        $user = User::find($userId);
+
+        // Retrieve bookings for the logged-in user
+        $bookings = Booking::where('user_id', $userId)->with('room')->get();
+
+        // Pass user info and bookings to the view
+        $data = [
+            'UserInfo' => $user,
+            'bookings' => $bookings
+        ];
+
         return view('my-profile', $data);
     }
-
+    
     function edit(Request $request) {
         $request -> validate([
             'name' => 'required',

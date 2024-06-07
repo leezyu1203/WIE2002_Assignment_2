@@ -29,6 +29,7 @@ Route::get('/rooms/booking/{roomId}', [MainController::class, 'rooms_booking'])-
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/my-profile', [AuthController::class, 'profile'])->name('myprofile');
+Route::post('/my-profile', [MainController::class, 'handle_booking'])->name('myprofile.handle_booking');
 Route::get('/sign-up', [AuthController::class, 'sign_up'])->name('sign-up');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/auth/save', [AuthController::class, 'save'])->name('auth.save');
