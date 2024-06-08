@@ -62,6 +62,15 @@
                         </div>
                         <p>Check-in date: {{ $checkinDate }}</p>
                         <p>Check-out date: {{ $checkoutDate }}</p>
+                        <p>Number of rooms left: {{ $rooms->numsRooms - $rooms->bookings()->where(function ($query) use ($checkinDate, $checkoutDate) {
+                                $query->whereBetween('checkin_date', [$checkinDate, $checkoutDate])
+                                    ->orWhereBetween('checkout_date', [$checkinDate, $checkoutDate])
+                                    ->orWhere(function ($query) use ($checkinDate, $checkoutDate) {
+                                        $query->where('checkin_date', '<=', $checkinDate)
+                                            ->where('checkout_date', '>=', $checkoutDate);
+                                    });
+                            })->count() }}
+                        </p>
                         <p>Number of nights: {{ $numOfNights }}</p>
                         <p>RM{{ $rooms->price }} per night</p>
                         <p>Total: RM{{ number_format($rooms->price * $numOfNights, 2) }}</p>

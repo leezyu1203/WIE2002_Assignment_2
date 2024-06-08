@@ -40,9 +40,8 @@ class MainController extends Controller
         return view('booking', $data, compact('rooms', 'checkinDate', 'checkoutDate', 'numOfNights'));
     }
 
-    function handle_booking(Request $request)
+    public function handle_booking(Request $request)
     {
-        // Debugging: Check if all data is present
         $validatedData = $request->validate([
             'roomId' => 'required|integer|exists:rooms,id',
             'checkinDate' => 'required|date',
@@ -51,21 +50,47 @@ class MainController extends Controller
             'totalCost' => 'required|numeric',
         ]);
 
-        // Debug: Log the validated data to the Laravel log
-        \Log::info('Booking data:', $validatedData);
-
-        // Logic for handling POST request to pass booking info
         $userId = session('LoggedUser');
+        $roomId = $request->roomId;
+        $checkinDate = $request->checkinDate;
+        $checkoutDate = $request->checkoutDate;
+
+        // Check room availability
+        if (!$this->isRoomAvailable($roomId, $checkinDate, $checkoutDate)) {
+            return redirect()->back()->with('fail', 'Room not available for the selected dates.');
+        }
+
+        // Create new booking
         $booking = new Booking;
         $booking->user_id = $userId;
-        $booking->room_id = $request->roomId;
-        $booking->checkin_date = $request->checkinDate;
-        $booking->checkout_date = $request->checkoutDate;
+        $booking->room_id = $roomId;
+        $booking->checkin_date = $checkinDate;
+        $booking->checkout_date = $checkoutDate;
         $booking->num_of_nights = $request->numOfNights;
         $booking->total_cost = $request->totalCost;
         $booking->save();
 
         return redirect()->route('myprofile')->with('success', 'Booking successfully added!');
+    }
+
+    private function isRoomAvailable($roomId, $checkinDate, $checkoutDate)
+    {
+        $room = Room::find($roomId);
+
+        // Get the number of overlapping bookings
+        $overlappingBookings = Booking::where('room_id', $roomId)
+            ->where(function ($query) use ($checkinDate, $checkoutDate) {
+                $query->whereBetween('checkin_date', [$checkinDate, $checkoutDate])
+                    ->orWhereBetween('checkout_date', [$checkinDate, $checkoutDate])
+                    ->orWhere(function ($query) use ($checkinDate, $checkoutDate) {
+                        $query->where('checkin_date', '<=', $checkinDate)
+                            ->where('checkout_date', '>=', $checkoutDate);
+                    });
+            })
+            ->count();
+
+        // Check if the room is available
+        return ($room->numsRooms - $overlappingBookings) > 0;
     }
 
 }

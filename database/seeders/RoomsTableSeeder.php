@@ -33,6 +33,7 @@ class RoomsTableSeeder extends Seeder
                     'images/StandardRoom2.jpg',
                     'images/StandardRoom3.jpg',
                 ]),
+                'numsRooms' => 10,
             ],
             [
                 'name' => 'Deluxe Room',
@@ -54,6 +55,7 @@ class RoomsTableSeeder extends Seeder
                     'images/DeluxeRoom2.jpg',
                     'images/DeluxeRoom3.jpg',
                 ]),
+                'numsRooms' => 10,
             ],
             [
                 'name' => 'Superior Room',
@@ -76,6 +78,7 @@ class RoomsTableSeeder extends Seeder
                     'images/SuperiorRoom2.jpg',
                     'images/SuperiorRoom3.jpg',
                 ]),
+                'numsRooms' => 5,
             ],
             [
                 'name' => 'Suite',
@@ -100,6 +103,7 @@ class RoomsTableSeeder extends Seeder
                     'images/Suite2.jpg',
                     'images/Suite3.jpg',
                 ]),
+                'numsRooms' => 5,
             ],
         ]);
     }

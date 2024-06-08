@@ -14,6 +14,7 @@ class CreateRoomsTable extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->json('images')->nullable();
+            $table->integer('numsRooms'); 
             $table->timestamps();
         });
     }
