@@ -33,6 +33,10 @@ footer {
     align-items: center;
 }
 
+small {
+    font-size: small;
+}
+
 .content {
     width: 75%;
     padding: 3rem 0 2rem 0;

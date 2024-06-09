@@ -48,21 +48,12 @@
                         <input type="hidden" name="roomId" value="{{ $rooms->id }}">
                         <input type="hidden" name="totalCost" value="{{ $rooms->price * $numOfNights }}">
 
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floating-name" name="name" value="{{ $UserInfo['name'] }}" required>
-                            <label for="floating-name">Guest Name</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floating-email" name="email" value="{{ $UserInfo['email'] }}" required>
-                            <label for="floating-email">Email</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" id="floating-phone" name="phone" value="{{ $UserInfo['phone'] }}" required>
-                            <label for="floating-phone">Phone Number</label>
-                        </div>
-                        <p>Check-in date: {{ $checkinDate }}</p>
-                        <p>Check-out date: {{ $checkoutDate }}</p>
-                        <p>Number of rooms left: {{ $rooms->numsRooms - $rooms->bookings()->where(function ($query) use ($checkinDate, $checkoutDate) {
+                        <p><small>Guest Name</small><br>{{ $UserInfo['name'] }}</p>
+                        <p><small>Email</small><br>{{ $UserInfo['email'] }}</p>
+                        <p><small>Phone Number</small><br>{{ $UserInfo['phone'] }}</p>
+                        <p><small>Check-in date:</small> {{ $checkinDate }}</p>
+                        <p><small>Check-out date:</small> {{ $checkoutDate }}</p>
+                        <p><small>Number of rooms left:</small> {{ $rooms->numsRooms - $rooms->bookings()->where(function ($query) use ($checkinDate, $checkoutDate) {
                                 $query->whereBetween('checkin_date', [$checkinDate, $checkoutDate])
                                     ->orWhereBetween('checkout_date', [$checkinDate, $checkoutDate])
                                     ->orWhere(function ($query) use ($checkinDate, $checkoutDate) {
@@ -71,9 +62,9 @@
                                     });
                             })->count() }}
                         </p>
-                        <p>Number of nights: {{ $numOfNights }}</p>
+                        <p><small>Number of nights:</small> {{ $numOfNights }}</p>
                         <p>RM{{ $rooms->price }} per night</p>
-                        <p>Total: RM{{ number_format($rooms->price * $numOfNights, 2) }}</p>
+                        <h5>Total: RM{{ number_format($rooms->price * $numOfNights, 2) }}</h5>
                         <button type="submit" class="btn btn-bd-primary">Confirm Booking</button>
                     </form>
                 </div>
