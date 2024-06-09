@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Date;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
@@ -10,30 +9,40 @@ use App\Models\Booking;
 
 class MainController extends Controller
 {
-    function check_rooms(Request $request) {
+    public function check_rooms(Request $request)
+    {
+        $checkinDate = $request->query('checkin-date');
+        $checkoutDate = $request->query('checkout-date');
+
         $rooms = Room::all();
-        $checkinDate = $request -> query('checkin-date');
-        $checkoutDate = $request -> query('checkout-date');
+
+        if ($checkinDate && $checkoutDate) {
+            $rooms = $rooms->filter(function ($room) use ($checkinDate, $checkoutDate) {
+                return $this->isRoomAvailable($room->id, $checkinDate, $checkoutDate);
+            });
+        }
 
         return view('rooms', compact('rooms', 'checkinDate', 'checkoutDate'));
     }
 
-    function rooms_booking(Request $request, $roomId) {
-        if(!session()->has('LoggedUser')) {
+    public function rooms_booking(Request $request, $roomId)
+    {
+        if (!session()->has('LoggedUser')) {
             return redirect(route('login'));
         }
+        
         $rooms = Room::find($roomId);
 
         if (!$rooms) {
             abort(404, 'Room not found');
         }
-        
-        $checkinDate = $request -> query('checkin-date');
-        $checkoutDate = $request -> query('checkout-date');
+
+        $checkinDate = $request->query('checkin-date');
+        $checkoutDate = $request->query('checkout-date');
 
         $checkin_date = new \DateTime($checkinDate);
         $checkout_date = new \DateTime($checkoutDate);
-        $interval = $checkin_date -> diff($checkout_date);
+        $interval = $checkin_date->diff($checkout_date);
         $numOfNights = $interval->days;
 
         $data = ['UserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
@@ -75,6 +84,10 @@ class MainController extends Controller
 
     private function isRoomAvailable($roomId, $checkinDate, $checkoutDate)
     {
+        // Ensure dates are in the correct format
+        $checkinDate = (new \DateTime($checkinDate))->format('Y-m-d');
+        $checkoutDate = (new \DateTime($checkoutDate))->format('Y-m-d');
+
         $room = Room::find($roomId);
 
         // Get the number of overlapping bookings
