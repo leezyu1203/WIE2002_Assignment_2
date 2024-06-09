@@ -48,13 +48,13 @@ class AuthController extends Controller
         $userInfo = User::where('email', '=', $request -> email) -> first();
 
         if(!$userInfo) {
-            return back() -> with('fail', 'We do not recognize your email address');
+            return back() -> with('fail', 'Incorrect email or password. Try again.');
         } else {
             if(Hash::check($request -> password, $userInfo -> password)) {
                 $request -> session() -> put('LoggedUser', $userInfo -> id);
                 return redirect(route('home'));
             } else {
-                return back() -> with('fail', 'Incorrect password');
+                return back() -> with('fail', 'Incorrect email or password. Try again.');
             }
         }
     }
