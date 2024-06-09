@@ -9,9 +9,30 @@
             <div class="col-6">
                 <h2 class="mb-4">Contact Us</h2>
                 <p>We're here to help and answer any questions you might have. We look forward to hearing from you!</p>
-                <p><i class="bi bi-geo-alt-fill me-3"></i>Hotel Address</p>
-                <p><i class="bi bi-telephone-fill me-3"></i>03 2142 8000</p>
-                <p><i class="bi bi-envelope-fill me-3"></i>hotelname@gmail.com</p>
+                <div class="row">
+                    <div class="col-auto">
+                        <p><i class="bi bi-geo-alt-fill"></i></p>
+                    </div>
+                    <div class="col">
+                        <p>168, Jln Imbi, Bukit Bintang, 55100 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <p><i class="bi bi-telephone-fill"></i></p>
+                    </div>
+                    <div class="col">
+                        <p>03 2142 8000</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <p><i class="bi bi-envelope-fill"></i></p>
+                    </div>
+                    <div class="col">
+                        <p>azurewaveinn@gmail.com</p>
+                    </div>
+                </div>
             </div>
             <div class="col-6 d-flex align-items-center justify-content-end">
                 <img src="images/contact-us.png" alt="contact us" width="400px">
