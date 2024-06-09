@@ -26,6 +26,7 @@ Route::get('/contact-us', [RatingController::class, 'contact_us'])->name('contac
 Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
 
 Route::get('/rooms/booking/{roomId}', [MainController::class, 'rooms_booking'])->name('rooms.booking');
+Route::delete('/rooms/booking/cancel/{id}', [MainController::class, 'cancelBooking'])->name('booking.cancel');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/my-profile', [AuthController::class, 'profile'])->name('myprofile');

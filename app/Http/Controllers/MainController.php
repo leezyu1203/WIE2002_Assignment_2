@@ -93,4 +93,17 @@ class MainController extends Controller
         return ($room->numsRooms - $overlappingBookings) > 0;
     }
 
+    public function cancelBooking($id)
+    {
+        $booking = Booking::find($id);
+        if (!$booking) {
+            return redirect()->back()->with('fail', 'Booking not found.');
+        }
+
+        $room = $booking->room;
+        $booking->delete();
+        $room->save();
+
+        return redirect()->route('myprofile')->with('success', 'Booking successfully canceled!');
+    }
 }

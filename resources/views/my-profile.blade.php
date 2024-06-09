@@ -82,6 +82,7 @@
                                         <th>Check-out Date</th>
                                         <th>Number of Nights</th>
                                         <th>Total Cost</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -92,6 +93,33 @@
                                             <td>{{ $booking->checkout_date }}</td>
                                             <td>{{ $booking->num_of_nights }}</td>
                                             <td>RM{{ number_format($booking->total_cost, 2) }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelBookingModal{{ $booking->id }}">
+                                                    Cancel
+                                                </button>
+                                                <!-- Cancel Booking Modal -->
+                                                <div class="modal fade" id="cancelBookingModal{{ $booking->id }}" tabindex="-1" aria-labelledby="cancelBookingModalLabel{{ $booking->id }}" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="cancelBookingModalLabel{{ $booking->id }}">Cancel Booking</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to cancel this booking?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                                <form action="{{ route('booking.cancel', $booking->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger">Yes</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

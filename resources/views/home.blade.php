@@ -5,7 +5,7 @@
 @section('content')
 <main>
     <div class="banner-image">
-        <img src="{{ asset('images/hotelbanner2.png') }}" alt="Banner Image">
+        <img src="{{ asset('images/hotelbanner.png') }}" alt="Banner Image">
     </div>
     <div class="container-fluid content">
         <form action="{{route('rooms')}}" method="get">
