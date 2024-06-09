@@ -13,8 +13,8 @@
                 <p><i class="bi bi-telephone-fill me-3"></i>03 2142 8000</p>
                 <p><i class="bi bi-envelope-fill me-3"></i>hotelname@gmail.com</p>
             </div>
-            <div class="col-6">
-                <div class="temp-image"></div>
+            <div class="col-6 d-flex align-items-center justify-content-end">
+                <img src="images/contact-us.png" alt="contact us" width="400px">
             </div>
         </div>
         <div class="row g-5 mb-3">
