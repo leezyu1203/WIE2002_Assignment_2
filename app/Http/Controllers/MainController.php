@@ -97,7 +97,7 @@ class MainController extends Controller
                     ->orWhereBetween('checkout_date', [$checkinDate, $checkoutDate])
                     ->orWhere(function ($query) use ($checkinDate, $checkoutDate) {
                         $query->where('checkin_date', '<=', $checkinDate)
-                            ->where('checkout_date', '>=', $checkoutDate);
+                            ->where('checkout_date', '>', $checkoutDate);
                     });
             })
             ->count();

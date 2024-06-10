@@ -53,12 +53,15 @@
                         <p><small>Phone Number</small><br>{{ $UserInfo['phone'] }}</p>
                         <p><small>Check-in date:</small> {{ $checkinDate }}</p>
                         <p><small>Check-out date:</small> {{ $checkoutDate }}</p>
-                        <p><small>Number of rooms left:</small> {{ $rooms->numsRooms - $rooms->bookings()->where(function ($query) use ($checkinDate, $checkoutDate) {
-                                $query->whereBetween('checkin_date', [$checkinDate, $checkoutDate])
-                                    ->orWhereBetween('checkout_date', [$checkinDate, $checkoutDate])
-                                    ->orWhere(function ($query) use ($checkinDate, $checkoutDate) {
-                                        $query->where('checkin_date', '<=', $checkinDate)
-                                            ->where('checkout_date', '>=', $checkoutDate);
+                        <p><small>Number of rooms left:</small> 
+                            {{ $rooms->numsRooms - $rooms->bookings()->where(function ($query) use ($checkinDate, $checkoutDate) {
+                                $formattedCheckinDate = (new \DateTime($checkinDate))->format('Y-m-d');
+                                $formattedCheckoutDate = (new \DateTime($checkoutDate))->modify('-1 day')->format('Y-m-d');
+                                
+                                $query->whereBetween('checkin_date', [$formattedCheckinDate, $formattedCheckoutDate])
+                                    ->orWhere(function ($query) use ($formattedCheckinDate, $formattedCheckoutDate) {
+                                        $query->where('checkin_date', '<=', $formattedCheckinDate)
+                                                ->where('checkout_date', '>', $formattedCheckinDate);
                                     });
                             })->count() }}
                         </p>
